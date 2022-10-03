@@ -1,27 +1,13 @@
 import MoonIcon from '../icons/MoonIcon';
-import { useEffect, useState } from 'react';
 import SunIcon from '../icons/SunIcon';
+import { useDarkMode } from './useDarkMode';
 
 function DarkModeButton() {
-  const [isDark, setIsDark] = useState(true);
+  const { isDark, toggleDark } = useDarkMode();
 
-  function toggleDark() {
-    setIsDark((old) => !old);
-  }
-
-  useEffect(() => {
-    if (window.matchMedia !== undefined) {
-      setIsDark(window.matchMedia('(prefers-color-scheme:dark)')?.matches);
-    }
-  }, []);
-
-  useEffect(() => {
-    const $html = document.getElementsByTagName('html')[0];
-    $html.setAttribute('data-theme', isDark ? 'forest' : 'emerald');
-  }, [isDark]);
-
-  const label = isDark ? '현재 다크 모드' : '현재 라이트 모드';
-
+  const label = isDark
+    ? '현재 다크 모드, 라이트 모드로 전환하려면 클릭하세요'
+    : '현재 라이트 모드, 다크 모드로 전환하려면 클릭하세요';
   return (
     <button
       type="button"

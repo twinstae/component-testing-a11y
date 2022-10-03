@@ -1,9 +1,10 @@
+import { useContext } from 'react';
 import MoonIcon from '../icons/MoonIcon';
 import SunIcon from '../icons/SunIcon';
-import { useDarkMode } from './useDarkMode';
+import { DarkModeContext } from './DarkModeContext';
 
 function DarkModeButton() {
-  const { isDark, toggleDark } = useDarkMode();
+  const { isDark, toggleDark } = useContext(DarkModeContext);
 
   const label = isDark
     ? '현재 다크 모드, 라이트 모드로 전환하려면 클릭하세요'
